@@ -1,0 +1,51 @@
+Scala stands for Scalable language
+Scala supports:
+1. Object-Oriented Programming (OOP)
+2. Functional Programming (FP)
+
+> start the scala in cmd 
+        start:- spark-shell
+        Technically, spark-shell starts the Scala REPL with Apache Spark, not just plain Scala.
+
+    ---------------- VARIABLES & DATA TYPES ----------------
+        scala> var a="hello scala"
+        a: String = hello scala
+
+        scala> var b='a'
+        b: Char = a
+
+        scala> var c=3.976f
+        c: Float = 3.976
+
+        scala> var d=7.0987654234567d
+        d: Double = 7.0987654234567
+
+        scala> var byte=0xBE
+        // does NOT create a Byte
+        byte: Int = 190
+
+        scala> var t=true
+        t: Boolean = true
+
+    -- Type Casting --
+        scala> var w:Double=2.14567
+        w: Double = 2.14567
+
+        scala> var e:Int=c
+        <console>:23: error: type mismatch;
+        found   : Float
+        required: Int
+            var e:Int=c
+                        ^
+
+        scala> var e:Int=c.toInt
+        e: Int = 3
+
+    
+    Common explicit type conversion methods:
+    .toByte
+    .toShort
+    .toInt
+    .toLong
+    .toFloat
+    .toDouble

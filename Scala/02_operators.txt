@@ -1,0 +1,76 @@
+operators: that perform specifc operations
+Types:
+    1. Arithmetic (+,-,*,/,%)
+    2. Relational (==,>=,<,<=, !=)
+    3. Logical (&&, || ,!)
+    4. Bitwise (&, |, ^, ~, <<, >>)
+    5. Assignment (+=,-=,*=,/=,%=)
+
+    ---------------- Arithmetic Operators ----------------
+        scala> :paste
+        // Entering paste mode (ctrl-D to finish)
+
+        var a=20
+        var b=10
+        println(a+b)
+        println(a-b)
+        println(a*b)
+        println(a/b)
+        println(a%b)
+
+        // Exiting paste mode, now interpreting.
+
+        30
+        10
+        200
+        2
+        0
+        a: Int = 20
+        b: Int = 10
+
+> paste mode is used when you want to enter multiple lines of Scala code together
+    Ctrl + D -> to exit paste mode and execute the code.
+
+*) Normally, Scala REPL executes commands one by one but with :paste, you can enter a block of multiple lines and execute them together.
+
+Q.) differnce between println (print + moves the cursor to the next line) and print (print + stay on same line)
+
+    ---------------- Relational Operators ----------------
+        scala> :paste
+        // Entering paste mode (ctrl-D to finish)
+
+        var x=40
+        x=35
+        var y=65
+        println(x==y)
+        println(x<y)
+        println(x>y)
+        println(x!=y)
+
+        // Exiting paste mode, now interpreting.
+
+        false
+        true
+        false
+        true
+        x: Int = 35
+        x: Int = 35
+        y: Int = 65
+
+    ---------------- Logical Operators ----------------
+    scala> :paste
+    // Entering paste mode (ctrl-D to finish)
+
+    var a=12
+    var b=4
+    println(a<100 && b>1)
+    println((a>2)||(b<2))
+    println(!(a<=b))
+
+    // Exiting paste mode, now interpreting.
+
+    true
+    true
+    true
+    a: Int = 12
+    b: Int = 4
