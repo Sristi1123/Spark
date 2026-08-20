@@ -1,0 +1,29 @@
+1. Import readLine
+    import scala.io.StdIn.readLine
+
+This imports Scala's readLine() function, which is used to take String input from the keyboard. 
+                            Then:
+
+                            var name = readLine()
+
+                            Scala waits for you to type something:
+
+                            scala
+
+                            So:
+
+                            name: String = scala
+
+2. Import readInt
+import scala.io.StdIn.readInt
+
+This imports readInt(), which is used to take integer input.
+
+
+The important difference:
+                        Function	        Input	            Scala type
+                        readLine()	        Text	            String
+                        readInt()	        Whole number	    Int
+                        readDouble()	    Decimal number	    Double
+                        readFloat()	        Decimal number	    Float
+                        readBoolean()	    true / false	    Boolean

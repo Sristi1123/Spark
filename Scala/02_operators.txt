@@ -74,3 +74,63 @@ Q.) differnce between println (print + moves the cursor to the next line) and pr
     true
     a: Int = 12
     b: Int = 4
+
+    ---------------- Assignment Operators ----------------
+    Assignment operators are used to assign or update the value of a variable.
+
+    var x = 20
+    x += 2
+    println(x)
+
+    x -= 5
+    println(x)
+
+    x *= 2
+    println(x)
+
+    x /= 2
+    println(x)
+
+    x %= 3
+    println(x)
+
+    => left shift and assignment operator (<<=)
+        var b = 4
+        b <<= 2
+        println(b)
+            4  = 0100
+            4 << 2 = 10000
+
+    => right shift and assignment operator(>>=)
+            b = b >> 2
+
+    => bitwise and assignment (&=)
+        c = c & 5
+            16 = 10000
+            5 = 00101
+            -----------
+                00000
+
+    => bitwise exclusive or and assignment (^=)
+            0 ^ 4 = 4
+    => bitwise inclusive or and assignment (|=)
+            4 | 7 = 7
+
+    ---------------- Bitwise Operators ----------------
+
+    var a = 5
+    var b = 3
+
+    println(a & b)    // AND
+    println(a | b)    // OR
+    println(a ^ b)    // XOR
+    println(~a)       // NOT
+    println(a << 1)   // Left shift
+    println(a >> 1)   // Right shift
+        output:
+            1
+            7
+            6
+            -6
+            10
+            2
