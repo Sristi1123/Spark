@@ -40,4 +40,42 @@
 
 ---------------- ---------------- User-Defined Functions ---------------- ---------------- 
 
+---------------- Explicit return ----------------
 
+scala> :paste
+// Entering paste mode (ctrl-D to finish)
+
+def multiply(a:Int,b:Int):Int=
+{
+return a*b
+}
+println(multiply(10,4))
+
+// Exiting paste mode, now interpreting.
+
+40
+multiply: (a: Int, b: Int)Int
+
+---------------- Implicit return ----------------
+
+scala> :paste
+// Entering paste mode (ctrl-D to finish)
+
+def add(a:Int,b:Int):Int=
+{
+a+b
+}
+print(add(10,4))
+
+// Exiting paste mode, now interpreting.
+
+14add: (a: Int, b: Int)Int
+
+
+> Concatenation and length 
+        scala> print(name+" "+course)
+        scala INT315
+        scala> print(a.length)
+        13
+        scala> print(name.length)
+        5

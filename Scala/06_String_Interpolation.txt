@@ -1,0 +1,32 @@
+---------------- s-Interpolator ----------------
+
+1) scala> :paste
+    // Entering paste mode (ctrl-D to finish)
+
+    var a="Scala"
+    println(s"My name is $a")
+    var b=100
+    println(s"My name is $a and My id is $b")
+
+    // Exiting paste mode, now interpreting.
+
+    My name is Scala
+    My name is Scala and My id is 100
+    a: String = Scala
+    b: Int = 100
+
+2) scala> :paste
+    // Entering paste mode (ctrl-D to finish)
+
+    var a=10
+    var b=20
+    println(s"sum is ${a+b}")
+
+    // Exiting paste mode, now interpreting.
+
+    sum is 30
+    a: Int = 10
+    b: Int = 20
+
+    scala> println(s"sum of a and b is ${a+b} which is smaller than $y")
+    sum of a and b is 30 which is smaller than 365
