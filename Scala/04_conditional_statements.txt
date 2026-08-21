@@ -1,0 +1,61 @@
+scala> var score=readInt()
+score: Int = 49
+
+scala> print(score)
+49
+
+                scala> :paste
+                // Entering paste mode (ctrl-D to finish)
+
+                if(score>50){
+                print("Yes")
+                }
+
+                // Exiting paste mode, now interpreting.
+
+
+scala> :paste
+// Entering paste mode (ctrl-D to finish)
+
+if(score>50){
+print("Yes")
+}else{
+print("No")
+}
+
+// Exiting paste mode, now interpreting.
+
+No
+
+                scala> :paste
+                // Entering paste mode (ctrl-D to finish)
+
+                var marks=readInt()
+                if(marks%2==0){
+                print("pass")
+                }else{
+                print("fail")
+                }
+
+                // Exiting paste mode, now interpreting.
+
+                passmarks: Int = 34
+
+                scala>
+        
+scala> :paste
+// Entering paste mode (ctrl-D to finish)
+
+var age=readInt()
+if(age<12){
+println("Parents permission required")
+}else if(age>12 && age<18){
+println("can be considered")
+}else{
+println("eligible")
+}
+
+// Exiting paste mode, now interpreting.
+
+can be considered
+age: Int = 15
