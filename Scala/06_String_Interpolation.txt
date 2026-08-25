@@ -30,3 +30,8 @@
 
     scala> println(s"sum of a and b is ${a+b} which is smaller than $y")
     sum of a and b is 30 which is smaller than 365
+
+    Scala string interpolators:-
+    1) The f Interpolator: How to format numbers, decimals, and dates (like printf).
+    2) The raw Interpolator: How to print special characters like without executing them.
+    3) Custom Interpolators: How to create your own prefix for strings.
