@@ -1,0 +1,113 @@
+# Scala — String Methods and Array Operations
+
+1. String `.length`
+
+        The `.length` method is used to find the **number of characters** in a string.
+
+        ```scala
+        val a = "Scala"
+
+        print(a.length)
+        ```
+
+        Output:
+
+        ```text
+        5
+        ```
+
+        Because `"Scala"` contains 5 characters.
+
+        ---
+
+2. `split()` Method
+
+        The `split()` method is used to **divide a string into multiple parts** based on a separator.
+
+        ### Example
+
+        ```scala
+        var a = "DBMS,Java,Cluster,CV,C".split(",")
+        ```
+
+        Output:
+
+        ```text
+        Array(DBMS, Java, Cluster, CV, C)
+        ```
+
+        Here, `","` is the separator.
+
+        ### How it works
+
+        ```text
+        "DBMS,Java,Cluster,CV,C"
+                ↓
+            split(",")
+                ↓
+        Array("DBMS", "Java", "Cluster", "CV", "C")
+        ```
+
+        The result is an:
+
+        ```scala
+        Array[String]
+        ```
+
+        ---
+
+3. `foreach()`
+
+        `foreach()` is used to **perform an operation on every element** of a collection.
+
+        ```scala
+        a.foreach(println)
+        ```
+
+        Output:
+
+        ```text
+        DBMS
+        Java
+        Cluster
+        CV
+        C
+        ```
+
+        Here, `println` is executed once for every element.
+
+        ### Equivalent `for` loop
+
+        ```scala
+        for (x <- a) {
+        println(x)
+        }
+        ```
+
+        Both produce the same output.
+
+---
+
+## 4. Important Methods
+
+| Method        | Purpose                                    |
+| ------------- | ------------------------------------------ |
+| `.length`     | Finds the length of a string or collection |
+| `.split(",")` | Splits a string using `,`                  |
+| `.foreach()`  | Performs an operation on each element      |
+| `println`     | Prints a value on a new line               |
+
+---
+
+## 5. Easy Way to Remember
+
+```text
+String
+   ↓
+split()
+   ↓
+Array
+   ↓
+foreach()
+   ↓
+Process each element

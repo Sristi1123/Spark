@@ -1,0 +1,317 @@
+# SCALA — REGULAR EXPRESSIONS (REGEX) BASICS
+
+        Regular Expression (Regex) is used to find patterns inside strings.
+
+        In Scala, we can use the `r` interpolator to create a regular expression.
+
+        Example:
+        val pattern = "ab*c".r
+
+        Here `.r` converts the string into a Regex pattern.
+
+1. ab*c
+
+        ---
+
+        Meaning:
+
+        a  -> must have 'a'
+        b* -> 'b' can appear 0 or more times
+        c  -> must have 'c'
+
+        Matches:
+
+        ac
+        abc
+        abbc
+        abbbc
+
+        Does NOT match:
+
+        ab
+        abcd
+        bac
+
+        Easy rule:
+
+        * = 0 or more
+
+2. ab+c
+
+        ---
+
+        Meaning:
+
+        a  -> must have 'a'
+        b+ -> 'b' must appear 1 or more times
+        c  -> must have 'c'
+
+        Matches:
+
+        abc
+        abbc
+        abbbc
+
+        Does NOT match:
+
+        ac
+        ab
+
+        Easy rule:
+
+        * = 1 or more
+
+3. ab{2}c
+
+        ---
+
+        Meaning:
+
+        b{2} means 'b' must appear exactly 2 times.
+
+        Matches:
+
+        abbc
+
+        Does NOT match:
+
+        abc
+        abbbc
+
+        Easy rule:
+
+        {n} = exactly n times
+
+4. ab{2,5}c
+
+        ---
+
+        Meaning:
+
+        'b' must appear between 2 and 5 times.
+
+        Matches:
+
+        abbc
+        abbbc
+        abbbbc
+        abbbbbc
+
+        Does NOT match:
+
+        abc       -> only 1 b
+        abbbbbbc  -> 6 b's
+
+        Easy rule:
+
+        {m,n} = between m and n times
+
+5. [abc]
+
+        ---
+
+        Square brackets mean match one character from the given characters.
+
+        [abc]
+
+        means:
+
+        a OR b OR c
+
+        Matches:
+
+        a
+        b
+        c
+
+        Example:
+
+        cat
+
+        The pattern [abc] can match:
+
+        c
+        a
+
+        Example:
+
+        hello
+
+        The pattern [abc] does not match because there is no a, b, or c.
+
+6. [abc]+
+
+        ---
+
+        [abc] -> one character: a, b, or c
+
+        * ```
+        -> one or more times
+        ```
+
+        Therefore:
+
+        [abc]+
+
+        matches one or more consecutive characters consisting only of a, b, or c.
+
+        Matches:
+
+        a
+        b
+        c
+        ab
+        abc
+        aaa
+        bb
+        aabbcc
+
+        Does NOT match:
+
+        abd
+        abcx
+
+        Because d and x are not inside [abc].
+
+7. [a-zA-Z]
+
+        ---
+
+        This means one English alphabet character.
+
+        a-z -> lowercase letters
+        A-Z -> uppercase letters
+
+        Matches:
+
+        a
+        z
+        A
+        Z
+        M
+        k
+
+        Does NOT match:
+
+        1
+        @
+
+        #
+
+8. [1-9]
+
+        ---
+
+        This matches one digit from 1 to 9.
+
+        Matches:
+
+        1
+        2
+        5
+        9
+
+        Does NOT match:
+
+        0
+        10
+        25
+
+        Important:
+
+        [1-9]
+
+        matches only ONE digit.
+
+9. [1-9]+
+
+        ---
+
+        [1-9] -> one digit from 1 to 9
+
+        * ```
+        -> one or more times
+        ```
+
+        Therefore:
+
+        [1-9]+
+
+        matches one or more consecutive non-zero digits.
+
+        Matches:
+
+        1
+        5
+        9
+        12
+        123
+        999
+        123456
+
+        Does NOT match:
+
+        0
+        10
+        101
+        205
+
+        Because 0 is not allowed.
+
+# IMPORTANT REGEX SYMBOLS
+
+        * ```
+            -> 0 or more
+        ```
+
+        - ```
+            -> 1 or more
+        ```
+
+        {2}        -> exactly 2
+        {2,5}      -> 2 to 5 times
+        [abc]      -> one character: a, b, or c
+        [abc]+     -> one or more a/b/c characters
+        [a-z]      -> one lowercase letter
+        [A-Z]      -> one uppercase letter
+        [a-zA-Z]   -> one alphabet character
+        [1-9]      -> one digit from 1 to 9
+        [1-9]+     -> one or more digits from 1 to 9
+
+# SCALA EXAMPLE
+
+        We can create a Regex using .r:
+
+        val pattern = "ab+c".r
+
+        Another example:
+
+        val pattern = "[1-9]+".r
+
+        The pattern means:
+
+        one or more digits from 1 to 9.
+
+# QUICK MEMORY TRICK
+
+        * ```
+            -> 0 or more
+        ```
+
+        - ```
+            -> 1 or more
+        ```
+
+        {n}     -> exactly n
+        {m,n}   -> m to n
+        [abc]   -> a OR b OR c
+        [a-z]   -> range of characters
+        [1-9]   -> range of numbers
+
+# MOST IMPORTANT DIFFERENCE
+
+        [1-9]     -> 1 digit
+        [1-9]+    -> 1 or more digits
+
+        [abc]     -> 1 character
+        [abc]+    -> 1 or more characters

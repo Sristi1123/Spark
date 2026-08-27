@@ -1,0 +1,38 @@
+SCALA — REGEX MATCHING
+
+
+### Scala Regex and `findFirstIn()`
+
+In Scala, we can create a **Regex** using `.r`. For example, `val a = "the".r` creates a regular expression that searches for the word **"the"**.
+
+We then define an input string:
+
+`val b = "the ca will be conducted next week"`
+
+To search for the first match, we use:
+
+`val c = a.findFirstIn(b)`
+
+The `findFirstIn()` method searches the string and returns the **first matching value**. Since `"the"` is present, the result is:
+
+`Some(the)`
+
+The return type is **`Option[String]`**, which can have two possible values:
+
+* `Some(value)` → when a match is found
+* `None` → when no match is found
+
+We can use `foreach()` to print the result:
+
+`c.foreach(println)`
+
+Output:
+
+`the`
+
+If there is no match, for example, if the Regex is `"Friday".r`, the result will be `None`. In that case, `foreach()` does not execute anything, so there is **no output**.
+
+**Quick Flow:**
+
+**Regex** → **findFirstIn()** → **Option[String]** → **Some(value) / None** → **foreach()**
+

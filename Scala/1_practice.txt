@@ -1,0 +1,41 @@
+scala> var a="[1-5]+".r
+a: scala.util.matching.Regex = [1-5]+
+
+scala> var b="0,21,67,84,2,43,14,26,37"
+b: String = 0,21,67,84,2,43,14,26,37
+
+scala> var c=a.findAllIn(b)
+c: scala.util.matching.Regex.MatchIterator = <iterator>
+
+scala> c.foreach(println)
+21
+4
+2
+43
+14
+2
+3
+
+        scala> var d=a.findFirstInt(b)
+        <console>:24: error: value findFirstInt is not a member of scala.util.matching.Regex
+            var d=a.findFirstInt(b)
+                    ^
+
+        scala> var d=a.findFirstIn(b)
+        d: Option[String] = Some(21)
+
+        scala> d.foreach(println)
+        21
+
+        scala> var a="[1-5]{2}+".r
+        a: scala.util.matching.Regex = [1-5]{2}+
+
+        scala> var c=a.findAllIn(b)
+        c: scala.util.matching.Regex.MatchIterator = <iterator>
+
+        scala> c.foreach(println)
+        21
+        43
+        14
+
+
