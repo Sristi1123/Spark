@@ -16,26 +16,52 @@ scala> c.foreach(println)
 2
 3
 
-        scala> var d=a.findFirstInt(b)
-        <console>:24: error: value findFirstInt is not a member of scala.util.matching.Regex
-            var d=a.findFirstInt(b)
-                    ^
+                scala> var d=a.findFirstInt(b)
+                <console>:24: error: value findFirstInt is not a member of scala.util.matching.Regex
+                    var d=a.findFirstInt(b)
+                            ^
 
-        scala> var d=a.findFirstIn(b)
-        d: Option[String] = Some(21)
+                scala> var d=a.findFirstIn(b)
+                d: Option[String] = Some(21)
 
-        scala> d.foreach(println)
-        21
+                scala> d.foreach(println)
+                21
 
-        scala> var a="[1-5]{2}+".r
-        a: scala.util.matching.Regex = [1-5]{2}+
+                scala> var a="[1-5]{2}+".r
+                a: scala.util.matching.Regex = [1-5]{2}+
 
-        scala> var c=a.findAllIn(b)
-        c: scala.util.matching.Regex.MatchIterator = <iterator>
+                scala> var c=a.findAllIn(b)
+                c: scala.util.matching.Regex.MatchIterator = <iterator>
 
-        scala> c.foreach(println)
-        21
-        43
-        14
+                scala> c.foreach(println)
+                21
+                43
+                14
 
 
+scala> var a="[a-z]+".r
+a: scala.util.matching.Regex = [a-z]+
+
+scala> var b="7a964cd7Qe9j6"
+b: String = 7a964cd7Qe9j6
+
+scala> var c=a.replaceAllIn(b,"0")
+c: String = 7096407Q0906
+
+scala> println(c)
+7096407Q0906
+
+
+                scala> var a="601213064"
+                a: String = 601213064
+
+                scala> var b=a.replaceFirst("[01]","A")
+                b: String = 6A1213064
+
+                scala> print(b)
+                6A1213064
+                scala> var b=a.replaceAll("[01]","A")
+                b: String = 6AA2A3A64
+
+                scala> print(b)
+                6AA2A3A64
