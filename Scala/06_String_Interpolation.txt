@@ -35,3 +35,108 @@
     1) The f Interpolator: How to format numbers, decimals, and dates (like printf).
     2) The raw Interpolator: How to print special characters like without executing them.
     3) Custom Interpolators: How to create your own prefix for strings.
+
+
+1. f String Interpolation
+
+        The f interpolator is used when we want to format values inside a string.
+
+        Example
+        val a: Double = 112.2345
+
+        println(f"the price is $a%.2f")
+
+        Output:
+
+        the price is 112.23
+        Important Rule
+
+        The formatting specifier must be attached directly to the variable:
+
+        $a%.2f
+
+        ❌ Incorrect:
+
+        f"the price is $a %.2f"
+
+        This gives:
+
+        error: conversions must follow a splice
+
+        ✅ Correct:
+
+        f"the price is $a%.2f"
+        Common Format Specifiers
+        Format	Meaning	Example
+        %.2f	2 decimal places	112.23
+        %.1f	1 decimal place	112.2
+        %.3f	3 decimal places	112.235
+        %d	Integer	10
+        %s	String	"Hello"
+
+2. raw String Interpolation
+
+        The raw interpolator treats escape sequences such as \n literally.
+
+        Example:
+
+        print(raw"bad\nstudents")
+
+        Output:
+
+        bad\nstudents
+
+        Another example:
+
+        print(raw"bad \n students")
+
+        Output:
+
+        bad \n students
+
+        The \n is not converted into a new line.
+
+3. Normal String
+
+        A normal Scala string interprets escape sequences.
+
+        print("bad \n students")
+
+        Output:
+
+        bad
+        students
+
+        Here:
+
+        \n
+
+        means new line.
+
+4. Difference Between Normal and raw
+        Normal String
+        print("Hello\nWorld")
+
+        Output:
+
+        Hello
+        World
+        Raw String
+        print(raw"Hello\nWorld")
+
+        Output:
+
+        Hello\nWorld
+
+Easy Way to Remember
+    "..."       → escape sequences work
+    raw"..."    → escape sequences are treated literally
+    f"..."      → formatting + interpolation
+
+Quick Summary
+    s → simple string interpolation
+    f → formatted string interpolation
+    raw → prevents normal escape-sequence processing
+    \n → new line in a normal string
+    raw"\n" → prints \n literally
+    In f strings, write $a%.2f, not $a %.2f
