@@ -8,7 +8,7 @@
             scala> println(a.matches("[1-6]+"))
             false
 
-2) equals :-> check whether the strings are exactly same or not
+2) equals :-> check whether the strings are exactly same or not and case-sensitive
             scala> var b="02435"
             b: String = 02435
 
@@ -46,4 +46,13 @@
             scala> println(a.compareTo(b))
             9
 
-4) equalsIgnoreCase :-> 
+4) equalsIgnoreCase :-> check whether the strings are exactly same or not and not case-sensitive
+            scala> var a="Scala"
+            a: String = Scala
+
+            scala> var b="scala"
+            b: String = scala
+
+            scala> println(a.equalsIgnoreCase(b))
+            true
+

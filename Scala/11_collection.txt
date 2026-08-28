@@ -1,0 +1,55 @@
+scala> var a=Seq(10,20,30,40)
+a: Seq[Int] = List(10, 20, 30, 40)
+
+scala> a.foreach(println)
+10
+20
+30
+40
+
+
+            scala> var c=Set(10,10,20,30,40)
+            c: scala.collection.immutable.Set[Int] = Set(10, 20, 30, 40)
+
+            scala> c.foreach(println)
+            10
+            20
+            30
+            40
+
+            scala> println(c.head)
+            10
+
+            scala> println(c.tail)
+            Set(20, 30, 40)
+
+
+scala> var d=Map(("a",10),("b",20))
+d: scala.collection.immutable.Map[String,Int] = Map(a -> 10, b -> 20)
+
+scala> d.foreach(println)
+(a,10)
+(b,20)
+
+scala> var e=Map(("x"->10),("y"->20))
+e: scala.collection.immutable.Map[String,Int] = Map(x -> 10, y -> 20)
+
+scala> e.foreach(println)
+(x,10)
+(y,20)
+
+            scala> var d=Map(("a",10),("b",20))
+            d: scala.collection.immutable.Map[String,Int] = Map(a -> 10, b -> 20)
+            scala> println(d.apply("a"))
+            10
+
+scala> var c=Set(10,10,20,30,40)
+c: scala.collection.immutable.Set[Int] = Set(10, 20, 30, 40)
+
+scala> println(c.apply(60))
+false
+
+scala> var b=Seq("a","b","c")
+b: Seq[String] = List(a, b, c)
+scala> println(b.apply(1))
+b
