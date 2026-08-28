@@ -1,0 +1,49 @@
+1) matches :-> whether the complete string match with regular expression or not
+            scala> var a="02345"
+            a: String = 02345
+
+            scala> println(a.matches("[0-6]+"))
+            true
+
+            scala> println(a.matches("[1-6]+"))
+            false
+
+2) equals :-> check whether the strings are exactly same or not
+            scala> var b="02435"
+            b: String = 02435
+
+            scala> println(a.equals(b))
+            false
+
+            scala> var a="Scala"
+            a: String = Scala
+
+            scala> var b="Scala"
+            b: String = Scala
+
+            scala> println(a.equals(b))
+            true
+
+3) compareTo :-> will match the string lexographically
+            scala> var a="Scala"
+            a: String = Scala
+
+            scala> var b="Scala"
+            b: String = Scala
+
+            scala> println(a.compareTo(b))
+            0
+
+            scala> var b="scala"
+            b: String = scala
+
+            scala> println(a.compareTo(b))
+            -32
+
+            scala> var b="John"
+            b: String = John
+
+            scala> println(a.compareTo(b))
+            9
+
+4) equalsIgnoreCase :-> 
