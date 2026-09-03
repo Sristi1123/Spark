@@ -1,0 +1,54 @@
+scala> import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.ArrayBuffer
+
+
+--------------------- Syntax(1) ---------------------
+scala> val a=ArrayBuffer(10,20,30,40)
+a: scala.collection.mutable.ArrayBuffer[Int] = ArrayBuffer(10, 20, 30, 40)
+
+scala> a.foreach(println)
+10
+20
+30
+40
+
+scala> a+=50
+res11: a.type = ArrayBuffer(10, 20, 30, 40, 50)
+
+scala> a-=20
+res12: a.type = ArrayBuffer(10, 30, 40, 50)
+
+scala> a.remove(1)
+res13: Int = 30
+
+scala> a.foreach(println)
+10
+40
+50
+
+scala> a.clear()
+
+scala> a.foreach(println)
+
+scala>
+
+
+--------------------- Syntax(2) ---------------------
+
+
+scala> val b=new ArrayBuffer[String]()
+b: scala.collection.mutable.ArrayBuffer[String] = ArrayBuffer()
+
+scala> b+="Scala"
+res21: b.type = ArrayBuffer(Scala)
+
+scala> b+="c"
+res22: b.type = ArrayBuffer(Scala, c)
+
+scala> b+="dbms"
+res23: b.type = ArrayBuffer(Scala, c, dbms)
+
+scala> b.foreach(println)
+Scala
+c
+dbms
