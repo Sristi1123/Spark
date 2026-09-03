@@ -1,0 +1,64 @@
+--------------------- Array Synatx (2) ---------------------
+
+scala> val a=Array(10,20,30,31,27,9,60)
+a: Array[Int] = Array(10, 20, 30, 31, 27, 9, 60)
+
+scala> a.foreach(println)
+10
+20
+30
+31
+27
+9
+60
+
+            scala> val b=a.filter(_%2==0)
+            b: Array[Int] = Array(10, 20, 30, 60)
+
+
+scala> val c=b.Map(_*3)
+<console>:23: error: value Map is not a member of Array[Int]
+       val c=b.Map(_*3)
+               ^
+
+
+scala> val c=b.map(_*3)
+c: Array[Int] = Array(30, 60, 90, 180)
+
+
+            scala> val d=c.reverse
+            d: Array[Int] = Array(180, 90, 60, 30)
+
+
+--------------------- Array Synatx (2) ---------------------
+
+scala> val a=new Array[String](4)
+a: Array[String] = Array(null, null, null, null)
+
+scala> a(0)="Scala"
+
+scala> a(1)="Spark"
+
+scala> a(2)="c"
+
+scala> a(3)="cpp"
+
+scala> a.foreach(println)
+Scala
+Spark
+c
+cpp
+
+
+--------------------- Insert Values In Array ---------------------
+
+scala> val a=Array.range(0,10)
+a: Array[Int] = Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+
+            scala> val b=Array.fill(4)("Scala")
+            b: Array[String] = Array(Scala, Scala, Scala, Scala)
+            
+
+scala> val c="Scala".toArray
+c: Array[Char] = Array(S, c, a, l, a)
