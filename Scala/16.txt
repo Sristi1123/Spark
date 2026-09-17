@@ -1,0 +1,34 @@
+scala>  val r=sc.parallelize(Array(("W",6),("C",1),("B",3),("r",0),("P",2)))
+r: org.apache.spark.rdd.RDD[(String, Int)] = ParallelCollectionRDD[0] at parallelize at <console>:23
+
+scala> val s=r.sortByKey()
+s: org.apache.spark.rdd.RDD[(String, Int)] = ShuffledRDD[3] at sortByKey at <console>:23
+
+scala> s.collect()
+res0: Array[(String, Int)] = Array((B,3), (C,1), (P,2), (W,6), (r,0))
+
+
+
+                scala> val r1=sc.parallelize(Array(("a",1),("b",3),("c",4)))
+                r1: org.apache.spark.rdd.RDD[(String, Int)] = ParallelCollectionRDD[8] at parallelize at <console>:23
+
+                scala> val r2=sc.parallelize(Array(("a",6),("b",7),("c",9)))
+                r2: org.apache.spark.rdd.RDD[(String, Int)] = ParallelCollectionRDD[9] at parallelize at <console>:23
+
+                scala> val r3=r1.join(r2)
+                r3: org.apache.spark.rdd.RDD[(String, (Int, Int))] = MapPartitionsRDD[12] at join at <console>:24
+
+                scala> r3.collect()
+                res2: Array[(String, (Int, Int))] = Array((a,(1,6)), (b,(3,7)), (c,(4,9)))
+
+
+
+
+scala> val a=sc.parallelize(Seq("a","b","c","d","e","f"),5)
+a: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[16] at parallelize at <console>:23
+
+scala> val b=a.coalesce(3)
+b: org.apache.spark.rdd.RDD[String] = CoalescedRDD[17] at coalesce at <console>:23
+
+scala> b.getNumPartitions
+res6: Int = 3

@@ -1,0 +1,39 @@
+scala> val a =sc.parallelize(Seq("a","b","c","d","e"))
+a: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[3] at parallelize at <console>:23
+
+scala> val b=a.count()
+b: Long = 5
+
+
+            scala> val a=sc.parallelize(50 to 60)
+            a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[4] at parallelize at <console>:23
+
+            scala> val b=a.take(5)
+            b: Array[Int] = Array(50, 51, 52, 53, 54)
+
+
+scala> val a=sc.parallelize(Seq(700,400,100,90,20,1000,600,30,9,700))
+a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[5] at parallelize at <console>:23
+
+scala> val b=a.top(4)
+b: Array[Int] = Array(1000, 700, 700, 600)
+
+
+            scala> val x=sc.parallelize(Seq("DBMS","Java","Java","DBMS","Java"))
+            x: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[18] at parallelize at <console>:23
+
+            scala> val r=x.countByValue()
+            r: scala.collection.Map[String,Long] = Map(DBMS -> 2, Java -> 3)
+
+            scala> val a=sc.parallelize(Seq(1,0,0,4,2,6,4,2,1,0,8,4,1,4,0,7,3))
+            a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[22] at parallelize at <console>:23
+
+            scala> val b=a.countByValue()
+            b: scala.collection.Map[Int,Long] = Map(0 -> 4, 1 -> 3, 6 -> 1, 2 -> 2, 7 -> 1, 3 -> 1, 8 -> 1, 4 -> 4)
+
+
+scala> val a =sc.parallelize(2 to 6)
+a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[26] at parallelize at <console>:23
+
+scala> val b=a.reduce((a,b)=>a+b)
+b: Int = 20
