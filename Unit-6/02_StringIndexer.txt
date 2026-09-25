@@ -1,0 +1,44 @@
+C:\Windows\System32>pyspark
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 3.5.3
+      /_/
+
+>>> from pyspark.sql import SparkSession
+>>> spark = SparkSession.builder.getOrCreate()
+>>> data = spark.read.csv("D:/Downloads Browser/coldata.csv", header = True,inferSchema = True)
+>>> data.show()
++---+------+
+| id| color|
++---+------+
+|  1|   red|
+|  2|  blue|
+|  3|orange|
+|  4| white|
+|  5|   red|
+|  6|orange|
+|  7|   red|
+|  8| white|
+|  9|   red|
++---+------+
+
+>>> from pyspark.ml.feature import StringIndexer
+>>> indexer=StringIndexer(inputCol="color", outputCol="color_indexed")
+>>> indexer_model=indexer.fit(data)
+>>> indexer_data=indexer_model.transform(data)
+>>> indexer_data.show()
++---+------+-------------+
+| id| color|color_indexed|
++---+------+-------------+
+|  1|   red|          0.0|
+|  2|  blue|          3.0|
+|  3|orange|          1.0|
+|  4| white|          2.0|
+|  5|   red|          0.0|
+|  6|orange|          1.0|
+|  7|   red|          0.0|
+|  8| white|          2.0|
+|  9|   red|          0.0|
++---+------+-------------+

@@ -1,0 +1,19 @@
+>>> from pyspark.sql import SparkSession
+>>> spark = SparkSession.builder.getOrCreate()
+>>> data = spark.read.csv("C:/Users/ASUS/Downloads/boston_housing.csv", header = True,inferSchema = True)
+>>> data.show()
+>>> data.printSchema()
+>>> feature_columns = data.columns[:-1]
+>>> from pyspark.ml.feature import VectorAssembler
+>>> assembler = VectorAssembler(inputCols =feature_columns,outputCol="features")
+>>> data_2 = assembler.transform(data)
+>>> data_2.show()
+>>> train,test =data_2.randomSplit([0.7,0.3])
+>>> from pyspark.ml.regression import LinearRegression
+>>> algo = LinearRegression(featuresCol ="features",labelCol ="medv")
+>>> model = algo.fit(train)
+>>> evaluation_summary = model.evaluate(test)
+>>> evaluation_summary.meanAbsoluteError
+3.552970518892612
+>>> predictions = model.transform(test)
+>>> predictions.select(predictions.columns[13:]).show()
