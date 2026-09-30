@@ -1,0 +1,17 @@
+>>>data2 = spark.read.csv("D:/Sem/7th Sem/Academic/INT315/Unit-6/wine.csv", header = False,inferSchema = True)
+>>> data.show(5)
+>>>from pyspark.ml.feature import VectorAssembler
+
+>>>assembler = VectorAssembler(inputCols=data2.columns[1:], outputCol="features")
+
+>>>data3 = assembler.transform(data2)
+
+>>>from pyspark.ml.feature import StandardScaler
+
+>>>scaler = StandardScaler(inputCol="features", outputCol="scaled-features")
+
+>>>scaler_model = scaler.fit(data3)
+
+>>>scaled_data = scaler_model.transform(data3)
+
+>>>scaled_data.show()
