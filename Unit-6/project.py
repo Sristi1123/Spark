@@ -160,7 +160,7 @@ for i in range(2):
 
 ax = axes[1][0]
 ax.bar(contracts, rates, color="#e76f51")
-ax.set_title("Churn rate by contract type (%)")
+ax.set_title("Churn rate by contract type (%)")c
 ax.set_ylim(0, max(rates) + 8)
 for i, v in enumerate(rates):
     ax.text(i, v + 0.8, f"{v:.1f}%", ha="center", fontweight="bold")
