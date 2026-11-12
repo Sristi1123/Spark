@@ -50,3 +50,32 @@ scala> b.show()
 |    103|     GHI|  ERE|
 |    104|     JKL|  CSE|
 +-------+--------+-----+
+
+
+-------------------------------- METHOD2 --------------------------------
+
+scala> val rdd=Seq("ID","Name")
+scala> val a=Seq((1,"john"),(2,"Alice"),(3,"bob"))
+scala> val b=sc.parallelize(a)
+scala> val df2=spark.createDataFrame(b).toDF(rdd:_*)
+
+scala> df2.show()
++---+-----+
+| ID| Name|
++---+-----+
+|  1| john|
+|  2|Alice|
+|  3|  bob|
++---+-----+
+
+
+
+----------------- METHOD 3 Create a DF using CSV File -----------------
+
+scala> val df=spark.read.option("header",true).option("inferSchema",true).csv("D:/Downloads Browser/coldata.csv")
+df: org.apache.spark.sql.DataFrame = [id: int, color: string]
+
+scala> val df=spark.read.option("header",true).csv("D:/Downloads Browser/coldata.csv")
+df: org.apache.spark.sql.DataFrame = [id: string, color: string]
+
+

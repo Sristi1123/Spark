@@ -1,0 +1,72 @@
+---------------------------------- create sparksql session ----------------------------------
+
+scala> import org.apache.spark.sql.SparkSession
+
+scala> val spark=SparkSession.builder().master("local[1]").appName("Example").getOrCreate()
+
+scala> val d=spark.read.option("header",true).csv("D:/Downloads Browser/a.csv")
+
+scala> d.printSchema()
+root
+ |-- country: string (nullable = true)
+ |-- city: string (nullable = true)
+ |-- zipcode: string (nullable = true)
+
+
+scala> d.show()
++-------+----------+-------+
+|country|      city|zipcode|
++-------+----------+-------+
+|    IND|     Delhi|   5632|
+|    IND|   Mumbai |   2563|
+|    IND|   Chennai|   2364|
+|    IND|   Kolkata|   3698|
+|    USA|        NY|   2896|
+|    USA|   Chicago|   2566|
+|    USA|        LA|   2566|
+|     UK|    London|   7889|
+|     UK|   Bristol|   2563|
+|     UK|Birmingham|   2653|
+|     SA|    Durban|   1235|
+|     SA| Cape Town|   NULL|
+|    IND|     Delhi|   3699|
+|    IND|   Mumbai |   2568|
+|    IND|     Delhi|   2365|
++-------+----------+-------+
+
+
+scala> d.createOrReplaceTempView("Table1")
+
+scala> spark.sql("Select * From Table1").show()
++-------+----------+-------+
+|country|      city|zipcode|
++-------+----------+-------+
+|    IND|     Delhi|   5632|
+|    IND|   Mumbai |   2563|
+|    IND|   Chennai|   2364|
+|    IND|   Kolkata|   3698|
+|    USA|        NY|   2896|
+|    USA|   Chicago|   2566|
+|    USA|        LA|   2566|
+|     UK|    London|   7889|
+|     UK|   Bristol|   2563|
+|     UK|Birmingham|   2653|
+|     SA|    Durban|   1235|
+|     SA| Cape Town|   NULL|
+|    IND|     Delhi|   3699|
+|    IND|   Mumbai |   2568|
+|    IND|     Delhi|   2365|
++-------+----------+-------+
+
+scala> spark.sql("Select city,zipcode From Table1 Where country='IND' order by zipcode ASC").show()
++-------+-------+
+|   city|zipcode|
++-------+-------+
+|Chennai|   2364|
+|  Delhi|   2365|
+|Mumbai |   2563|
+|Mumbai |   2568|
+|Kolkata|   3698|
+|  Delhi|   3699|
+|  Delhi|   5632|
++-------+-------+
