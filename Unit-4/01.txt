@@ -1,0 +1,52 @@
+C:\Users\srist>spark-shell
+
+
+scala> import spark.implicits._
+import spark.implicits._
+
+scala> val c=Seq("Team","Match")
+c: Seq[String] = List(Team, Match)
+
+scala> val d=Seq(("India",300),("England",150),("Australia",230))
+d: Seq[(String, Int)] = List((India,300), (England,150), (Australia,230))
+
+scala> val r=sc.parallelize(d)
+r: org.apache.spark.rdd.RDD[(String, Int)] = ParallelCollectionRDD[0] at parallelize at <console>:27
+
+scala> val d=r.toDF("Team","Match")
+d: org.apache.spark.sql.DataFrame = [Team: string, Match: int]
+
+scala> d.show()
++---------+-----+
+|     Team|Match|
++---------+-----+
+|    India|  300|
+|  England|  150|
+|Australia|  230|
++---------+-----+
+
+
+  -------------------------------- PRACTICE QUESTION --------------------------------
+
+
+scala> val a=Seq("Emp. Id","Employee","Dept.")
+a: Seq[String] = List(Emp. Id, Employee, Dept.)
+
+scala> val b=Seq((101,"ABC","CSE"),(102,"DEF","ECE"),(103,"GHI","ERE"),(104,"JKL","CSE"))
+b: Seq[(Int, String, String)] = List((101,ABC,CSE), (102,DEF,ECE), (103,GHI,ERE), (104,JKL,CSE))
+
+scala> val f=sc.parallelize(b)
+f: org.apache.spark.rdd.RDD[(Int, String, String)] = ParallelCollectionRDD[4] at parallelize at <console>:27
+
+scala> val b=f.toDF("Emp. Id","Employee","Dept.")
+b: org.apache.spark.sql.DataFrame = [Emp. Id: int, Employee: string ... 1 more field]
+
+scala> b.show()
++-------+--------+-----+
+|Emp. Id|Employee|Dept.|
++-------+--------+-----+
+|    101|     ABC|  CSE|
+|    102|     DEF|  ECE|
+|    103|     GHI|  ERE|
+|    104|     JKL|  CSE|
++-------+--------+-----+
