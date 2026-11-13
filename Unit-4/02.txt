@@ -70,3 +70,14 @@ scala> spark.sql("Select city,zipcode From Table1 Where country='IND' order by z
 |  Delhi|   3699|
 |  Delhi|   5632|
 +-------+-------+
+
+scala> spark.sql("""Select * From Table1
+     | Where city='Chennai'Or city='Delhi'""").show()
++-------+-------+-------+
+|country|   city|zipcode|
++-------+-------+-------+
+|    IND|  Delhi|   5632|
+|    IND|Chennai|   2364|
+|    IND|  Delhi|   3699|
+|    IND|  Delhi|   2365|
++-------+-------+-------+
