@@ -81,3 +81,43 @@ scala> spark.sql("""Select * From Table1
 |    IND|  Delhi|   3699|
 |    IND|  Delhi|   2365|
 +-------+-------+-------+
+
+scala> spark.sql("""SELECT * FROM Table1 WHERE zipcode IS NULL""").show()
++-------+---------+-------+
+|country|     city|zipcode|
++-------+---------+-------+
+|     SA|Cape Town|   NULL|
++-------+---------+-------+
+
+
+scala> spark.sql("Select Distinct country From Table1").show()
++-------+
+|country|
++-------+
+|     SA|
+|    USA|
+|     UK|
+|    IND|
++-------+
+
+
+scala> spark.sql("Select * From Table1 order by country DESC, zipcode ASC").show()
++-------+----------+-------+
+|country|      city|zipcode|
++-------+----------+-------+
+|    USA|   Chicago|   2566|
+|    USA|        LA|   2566|
+|    USA|        NY|   2896|
+|     UK|   Bristol|   2563|
+|     UK|Birmingham|   2653|
+|     UK|    London|   7889|
+|     SA| Cape Town|   NULL|
+|     SA|    Durban|   1235|
+|    IND|   Chennai|   2364|
+|    IND|     Delhi|   2365|
+|    IND|   Mumbai |   2563|
+|    IND|   Mumbai |   2568|
+|    IND|   Kolkata|   3698|
+|    IND|     Delhi|   3699|
+|    IND|     Delhi|   5632|
++-------+----------+-------+

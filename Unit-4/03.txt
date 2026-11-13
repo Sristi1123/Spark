@@ -1,0 +1,40 @@
+---------------------------------- Aggregate Functions ----------------------------------
+
+scala> spark.sql("Select Count(*) from Table1").show()
++--------+
+|count(1)|
++--------+
+|      15|
++--------+
+
+scala> spark.sql("Select Sum(zipcode) as Total_codes From Table1").show()
++-----------+
+|Total_codes|
++-----------+
+|    45257.0|
++-----------+
+
+scala> spark.sql("Select Count(zipcode) from Table1").show()
++--------------+
+|count(zipcode)|
++--------------+
+|            14|
++--------------+
+
+scala> spark.sql("Select country, city From Table1 group by country, city having Max(zipcode)>4500").show()
++-------+------+
+|country|  city|
++-------+------+
+|    IND| Delhi|
+|     UK|London|
++-------+------+
+
+
+scala> spark.sql("Select country, city,Max(zipcode) As Code From Table1 group by country, city having Max(zipcode)>4500"
+).show()
++-------+------+----+
+|country|  city|Code|
++-------+------+----+
+|    IND| Delhi|5632|
+|     UK|London|7889|
++-------+------+----+
