@@ -38,3 +38,12 @@ scala> spark.sql("Select country, city,Max(zipcode) As Code From Table1 group by
 |    IND| Delhi|5632|
 |     UK|London|7889|
 +-------+------+----+
+
+scala> spark.sql("Select country,count(country) as total From Table1 group by country having count(*)>2").show()
++-------+-----+
+|country|total|
++-------+-----+
+|    USA|    3|
+|     UK|    3|
+|    IND|    7|
++-------+-----+
