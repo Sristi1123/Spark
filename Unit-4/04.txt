@@ -1,0 +1,69 @@
+---------------------------------- wildcard operators in Scala SQL (Spark SQL) ----------------------------------
+
+1. % (Percentage wildcard)
+            SELECT * FROM Table1
+            WHERE city LIKE 'D%';
+
+_ (Underscore wildcard)
+            SELECT * FROM Table1
+            WHERE city LIKE 'M_m_ai';
+
+    ----*---*----*---*----*---*----*---*----*----*---*----*---*----*----
+            Query pattern	Meaning
+                    'A%'	Starts with A
+                    '%a'	Ends with a
+                    '%an%'	Contains an
+                    'A___'	Starts with A and has exactly 4 characters
+                    '____'	Exactly 4 characters
+                    '_a%'	Second character is a
+
+    ----*---*----*---*----*---*----*---*----*----*---*----*---*----*----
+
+
+scala> spark.sql("select* from Table1 where city like 'c%'").show()
++-------+----+-------+
+|country|city|zipcode|
++-------+----+-------+
++-------+----+-------+
+
+
+scala> spark.sql("select* from Table1 where city like '%i'").show()
++-------+-------+-------+
+|country|   city|zipcode|
++-------+-------+-------+
+|    IND|  Delhi|   5632|
+|    IND|Chennai|   2364|
+|    IND|  Delhi|   3699|
+|    IND|  Delhi|   2365|
++-------+-------+-------+
+
+
+scala> spark.sql("select* from Table1 where city like '%a%'").show()
++-------+----------+-------+
+|country|      city|zipcode|
++-------+----------+-------+
+|    IND|   Mumbai |   2563|
+|    IND|   Chennai|   2364|
+|    IND|   Kolkata|   3698|
+|    USA|   Chicago|   2566|
+|     UK|Birmingham|   2653|
+|     SA|    Durban|   1235|
+|     SA| Cape Town|   NULL|
+|    IND|   Mumbai |   2568|
++-------+----------+-------+
+
+
+scala> spark.sql("select* from Table1 where city like '___'").show()
++-------+----+-------+
+|country|city|zipcode|
++-------+----+-------+
++-------+----+-------+
+
+
+scala> spark.sql("select* from Table1 where city like '______'").show()
++-------+------+-------+
+|country|  city|zipcode|
++-------+------+-------+
+|     UK|London|   7889|
+|     SA|Durban|   1235|
++-------+------+-------+
