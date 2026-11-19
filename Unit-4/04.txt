@@ -1,4 +1,4 @@
----------------------------------- wildcard operators in Scala SQL (Spark SQL) ----------------------------------
+----------------------- wildcard operators in Scala SQL (Spark SQL) -----------------------
 
 1. % (Percentage wildcard)
             SELECT * FROM Table1

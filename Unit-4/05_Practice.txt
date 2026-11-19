@@ -1,0 +1,71 @@
+C:\Users\srist>spark-shell
+
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.5.3
+      /_/
+
+scala> import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.SparkSession
+
+scala> import spark.implicits._
+import spark.implicits._
+
+scala> val a=Seq("Name","Age","Department","Salary")
+a: Seq[String] = List(Name, Age, Department, Salary)
+
+scala> val b=Seq(("John",30,"IT",50000),("Alice",35,"HR",60000),("Bob",40,"Finance",70000))
+b: Seq[(String, Int, String, Int)] = List((John,30,IT,50000), (Alice,35,HR,60000), (Bob,40,Finance,70000))
+
+scala> val c=sc.parallelize(b)
+c: org.apache.spark.rdd.RDD[(String, Int, String, Int)] = ParallelCollectionRDD[0] at parallelize at <console>:28
+
+scala> val d=c.toDF("Name","Age","Department","Salary")
+d: org.apache.spark.sql.DataFrame = [Name: string, Age: int ... 2 more fields]
+
+scala> d.show()
++-----+---+----------+------+
+| Name|Age|Department|Salary|
++-----+---+----------+------+
+| John| 30|        IT| 50000|
+|Alice| 35|        HR| 60000|
+|  Bob| 40|   Finance| 70000|
++-----+---+----------+------+
+
+
+scala> d.createOrReplaceTempView("Table2")
+
+scala> spark.sql("Select * From Table2").show()
++-----+---+----------+------+
+| Name|Age|Department|Salary|
++-----+---+----------+------+
+| John| 30|        IT| 50000|
+|Alice| 35|        HR| 60000|
+|  Bob| 40|   Finance| 70000|
++-----+---+----------+------+
+
+
+scala> spark.sql("Select avg(Age) as Avg_Age From Table2").show()
++-------+
+|Avg_Age|
++-------+
+|   35.0|
++-------+
+
+
+scala> spark.sql("Select Name From Table2 where Department='Finance'").show()
++----+
+|Name|
++----+
+| Bob|
++----+
+
+
+scala> spark.sql("Select sum(Salary) as Sum_Salary From Table2").show()
++----------+
+|Sum_Salary|
++----------+
+|    180000|
++----------+
