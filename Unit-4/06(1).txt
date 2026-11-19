@@ -42,3 +42,43 @@ scala> spark.sql("select * from emp_data e inner join emp1_data e1 on e.Deptno=e
 |    40|    Admin| Chennai|  444| MAdhu|Engineer|    40|
 +------+---------+--------+-----+------+--------+------+
 
+scala> spark.sql("select * from emp_data e left join emp1_data e1 on e.Deptno=e1.Deptno").show()
++------+---------+--------+-----+------+--------+------+
+|Deptno|    Dname|     Loc|Empno| Ename|     job|Deptno|
++------+---------+--------+-----+------+--------+------+
+|    10|Inventory|Hydrabad|  333| Jagan| Manager|    10|
+|    10|Inventory|Hydrabad|  111|Saketh| Analyst|    10|
+|    20|  Finance|Banglore|  222| Sudha|   Clerk|    20|
+|    30|       HR|  Mumbai| NULL|  NULL|    NULL|  NULL|
+|    40|    Admin| Chennai|  444| MAdhu|Engineer|    40|
++------+---------+--------+-----+------+--------+------+
+
+
+scala> spark.sql("select * from emp_data e cross join emp1_data e1").show()
++------+---------+--------+-----+------+--------+------+
+|Deptno|    Dname|     Loc|Empno| Ename|     job|Deptno|
++------+---------+--------+-----+------+--------+------+
+|    10|Inventory|Hydrabad|  111|Saketh| Analyst|    10|
+|    10|Inventory|Hydrabad|  222| Sudha|   Clerk|    20|
+|    10|Inventory|Hydrabad|  333| Jagan| Manager|    10|
+|    10|Inventory|Hydrabad|  444| MAdhu|Engineer|    40|
+|    20|  Finance|Banglore|  111|Saketh| Analyst|    10|
+|    20|  Finance|Banglore|  222| Sudha|   Clerk|    20|
+|    20|  Finance|Banglore|  333| Jagan| Manager|    10|
+|    20|  Finance|Banglore|  444| MAdhu|Engineer|    40|
+|    30|       HR|  Mumbai|  111|Saketh| Analyst|    10|
+|    30|       HR|  Mumbai|  222| Sudha|   Clerk|    20|
+|    30|       HR|  Mumbai|  333| Jagan| Manager|    10|
+|    30|       HR|  Mumbai|  444| MAdhu|Engineer|    40|
+|    40|    Admin| Chennai|  111|Saketh| Analyst|    10|
+|    40|    Admin| Chennai|  222| Sudha|   Clerk|    20|
+|    40|    Admin| Chennai|  333| Jagan| Manager|    10|
+|    40|    Admin| Chennai|  444| MAdhu|Engineer|    40|
++------+---------+--------+-----+------+--------+------+
+
+scala> spark.sql("select * from emp_data e inner join emp_data e1 on e.Deptno=e1.Deptno where e.Dname!=e1.Dname").show()
+
++------+-----+---+------+-----+---+
+|Deptno|Dname|Loc|Deptno|Dname|Loc|
++------+-----+---+------+-----+---+
++------+-----+---+------+-----+---+
