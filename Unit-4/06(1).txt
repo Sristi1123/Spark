@@ -1,0 +1,44 @@
+------------------------- JOINS USING SQL METHOD -------------------------
+For Joins we have to create atleast 2 dataframes having one common attribute
+
+scala> import spark.implicits._
+
+scala> val emp=sc.parallelize(List((10,"Inventory","Hydrabad"),(20,"Finance","Banglore"),(30,"HR","Mumbai"),(40,"Admin","Chennai"))).toDF("Deptno","Dname","Loc")
+
+scala> emp.show()
++------+---------+--------+
+|Deptno|    Dname|     Loc|
++------+---------+--------+
+|    10|Inventory|Hydrabad|
+|    20|  Finance|Banglore|
+|    30|       HR|  Mumbai|
+|    40|    Admin| Chennai|
++------+---------+--------+
+
+
+scala> val emp1=sc.parallelize(List((111,"Saketh","Analyst",10),(222,"Sudha","Clerk",20),(333,"Jagan","Manager",10),(444,"MAdhu","Engineer",40))).toDF("Empno","Ename","job","Deptno")
+
+scala> emp1.show()
++-----+------+--------+------+
+|Empno| Ename|     job|Deptno|
++-----+------+--------+------+
+|  111|Saketh| Analyst|    10|
+|  222| Sudha|   Clerk|    20|
+|  333| Jagan| Manager|    10|
+|  444| MAdhu|Engineer|    40|
++-----+------+--------+------+
+
+scala> emp.createOrReplaceTempView("emp_data")
+
+scala> emp1.createOrReplaceTempView("emp1_data")
+
+scala> spark.sql("select * from emp_data e inner join emp1_data e1 on e.Deptno=e1.Deptno").show()
++------+---------+--------+-----+------+--------+------+
+|Deptno|    Dname|     Loc|Empno| Ename|     job|Deptno|
++------+---------+--------+-----+------+--------+------+
+|    10|Inventory|Hydrabad|  111|Saketh| Analyst|    10|
+|    10|Inventory|Hydrabad|  333| Jagan| Manager|    10|
+|    20|  Finance|Banglore|  222| Sudha|   Clerk|    20|
+|    40|    Admin| Chennai|  444| MAdhu|Engineer|    40|
++------+---------+--------+-----+------+--------+------+
+
