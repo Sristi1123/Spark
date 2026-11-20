@@ -1,0 +1,112 @@
+C:\Users\srist>spark-shell
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.5.3
+      /_/
+
+scala> import spark.implicits._
+
+scala> val a=Seq("Emp_Id","Emp_Name","Department","Salary","City")
+                                                                                
+scala> val b=Seq((101,"Amit","IT",45000,"Delhi"),(102,"Neha","HR",35000,"Mumbai"),(103,"Rahul","IT",55000,"Delhi"),(104,"Priya","Finance",60000,"Pune"),(105,"Karan","HR",40000,"Mumbai"),(106,"Sneha","Finance",50000,"Delhi"),(107,"Arjun","IT",65000,"Pune"),(108,"Meena","HR",30000,"Delhi"))
+
+scala> val c=sc.parallelize(b)
+
+scala> val b=c.toDF("Emp_Id","Emp_Name","Department","Salary","City")
+
+scala> b.show()
++------+--------+----------+------+------+
+|Emp_Id|Emp_Name|Department|Salary|  City|
++------+--------+----------+------+------+
+|   101|    Amit|        IT| 45000| Delhi|
+|   102|    Neha|        HR| 35000|Mumbai|
+|   103|   Rahul|        IT| 55000| Delhi|
+|   104|   Priya|   Finance| 60000|  Pune|
+|   105|   Karan|        HR| 40000|Mumbai|
+|   106|   Sneha|   Finance| 50000| Delhi|
+|   107|   Arjun|        IT| 65000|  Pune|
+|   108|   Meena|        HR| 30000| Delhi|
++------+--------+----------+------+------+
+
+
+scala> b.createOrReplaceTempView("Employee")
+
+scala> spark.sql("select Emp_Name, Salary from Employee").show()
++--------+------+
+|Emp_Name|Salary|
++--------+------+
+|    Amit| 45000|
+|    Neha| 35000|
+|   Rahul| 55000|
+|   Priya| 60000|
+|   Karan| 40000|
+|   Sneha| 50000|
+|   Arjun| 65000|
+|   Meena| 30000|
++--------+------+
+
+
+scala> spark.sql("select * from Employee where Salary>45000").show()
++------+--------+----------+------+-----+
+|Emp_Id|Emp_Name|Department|Salary| City|
++------+--------+----------+------+-----+
+|   103|   Rahul|        IT| 55000|Delhi|
+|   104|   Priya|   Finance| 60000| Pune|
+|   106|   Sneha|   Finance| 50000|Delhi|
+|   107|   Arjun|        IT| 65000| Pune|
++------+--------+----------+------+-----+
+
+
+scala> spark.sql("select * from Employee where Department='IT'").show()
++------+--------+----------+------+-----+
+|Emp_Id|Emp_Name|Department|Salary| City|
++------+--------+----------+------+-----+
+|   101|    Amit|        IT| 45000|Delhi|
+|   103|   Rahul|        IT| 55000|Delhi|
+|   107|   Arjun|        IT| 65000| Pune|
++------+--------+----------+------+-----+
+
+
+scala> spark.sql("select * from Employee order by Salary DESC").show()
++------+--------+----------+------+------+
+|Emp_Id|Emp_Name|Department|Salary|  City|
++------+--------+----------+------+------+
+|   107|   Arjun|        IT| 65000|  Pune|
+|   104|   Priya|   Finance| 60000|  Pune|
+|   103|   Rahul|        IT| 55000| Delhi|
+|   106|   Sneha|   Finance| 50000| Delhi|
+|   101|    Amit|        IT| 45000| Delhi|
+|   105|   Karan|        HR| 40000|Mumbai|
+|   102|    Neha|        HR| 35000|Mumbai|
+|   108|   Meena|        HR| 30000| Delhi|
++------+--------+----------+------+------+
+
+
+scala> spark.sql("select Department,Count(*) as Total from Employee group by Department").show()
++----------+-----+
+|Department|Total|
++----------+-----+
+|        IT|    3|
+|        HR|    3|
+|   Finance|    2|
++----------+-----+
+
+
+scala> spark.sql("select Department,avg(Salary) as Total from Employee group by Department").show()
++----------+-------+
+|Department|  Total|
++----------+-------+
+|        IT|55000.0|
+|        HR|35000.0|
+|   Finance|55000.0|
++----------+-------+
+
+
+scala> spark.sql("select min(Salary),max(Salary) from Employee").show()
++-----------+-----------+
+|min(Salary)|max(Salary)|
++-----------+-----------+
+|      30000|      65000|
++-----------+-----------+
