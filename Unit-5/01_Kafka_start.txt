@@ -1,0 +1,20 @@
+Run cmd as admin
+1) Start zookeeper
+        cd C:\kafka_2.12-3.9.1
+
+        .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+Run another cms as admin
+2) Start broker
+        cd C:\kafka_2.12-3.9.1
+
+        .\bin\windows\kafka-server-start.bat .\config\server.properties
+
+Run another cms as admin
+3) Run another cms as admin
+        jps
+        > Kafka 
+        > Jps
+        > QuorumPeerMain
+
+
